@@ -4,20 +4,6 @@ from langchain_community.tools import DuckDuckGoSearchRun
 from langchain.agents import create_react_agent, AgentExecutor
 from langchain import hub
 
-st.markdown("""
-
-    <style>
-
-        .stApp {
-
-            background: linear-gradient(to bottom, #000000, #434343);
-
-        }
-
-    </style>
-
-""", unsafe_allow_html=True)
-
 # Get API key from secrets
 api_key = st.secrets["GROQ_API_KEY"]
 
