@@ -1,6 +1,6 @@
 import streamlit as st
 from langchain_groq import ChatGroq
-from langchain_community.tools import DuckDuckGoSearchResults
+from langchain_community.tools import DuckDuckGoSearchRun
 from langchain.agents import create_react_agent, AgentExecutor
 from langchain import hub
 
@@ -11,7 +11,7 @@ api_key = st.secrets["GROQ_API_KEY"]
 llm = ChatGroq(model_name="mixtral-8x7b-32768", api_key=api_key)
 
 # creating the tool
-search_tool = DuckDuckGoSearchResults()
+search_tool = DuckDuckGoSearchRun()
 
 # creating a prompt for the llm to follow
 prompt = hub.pull("hwchase17/react-chat")
