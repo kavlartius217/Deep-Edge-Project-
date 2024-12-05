@@ -1,5 +1,5 @@
 streamlit
 langchain-community
 langchain-groq
-duckduckgo-search>=3.0.0
+duckduckgo-search>=6.3.0
 langchain
