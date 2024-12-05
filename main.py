@@ -13,7 +13,7 @@ llm = ChatGroq(model_name="mixtral-8x7b-32768", api_key=api_key)
 # creating the tool
 search_tool = DuckDuckGoSearchRun()
 
-# creating a prompt for the llm to follow
+# creating a prompt for the llm
 prompt = hub.pull("hwchase17/react-chat")
 
 # now creating a chatbot using agents
@@ -22,7 +22,7 @@ agent = create_react_agent(llm=llm, tools=[search_tool], prompt=prompt)
 # executing the agent
 agent_exec = AgentExecutor(agent=agent, llm=llm, tools=[search_tool], verbose=True, handle_parsing_errors=True)
 
-# Chat history in session state
+# Chat history
 if 'chat_history' not in st.session_state:
     st.session_state.chat_history = []
 
