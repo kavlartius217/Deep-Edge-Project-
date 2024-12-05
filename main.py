@@ -11,7 +11,7 @@ api_key = st.secrets["GROQ_API_KEY"]
 llm = ChatGroq(model_name="mixtral-8x7b-32768", api_key=api_key,temperature=0.3)
 
 # creating the tool
-search_tool = DuckDuckGoSearchRun()
+search_tool = DuckDuckGoSearchRun(sleep_time=2)
 
 # creating a prompt for the llm
 prompt = hub.pull("hwchase17/react-chat")
