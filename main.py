@@ -27,7 +27,7 @@ prompt = hub.pull("hwchase17/react-chat")
 agent = create_react_agent(llm=llm, tools=[search_tool], prompt=prompt)
 
 # executing the agent
-agent_exec = AgentExecutor(agent=agent, llm=llm, tools=[search_tool], verbose=True, handle_parsing_errors=True)
+agent_exec = AgentExecutor(agent=agent, llm=llm, tools=[search_tool], verbose=True, handle_parsing_errors=True,max_iterations=3)
 
 # Chat history in session state
 if 'chat_history' not in st.session_state:
