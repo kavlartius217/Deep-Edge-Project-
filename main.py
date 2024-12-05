@@ -8,7 +8,7 @@ from langchain import hub
 api_key = st.secrets["GROQ_API_KEY"]
 
 # importing the llm
-llm = ChatGroq(model_name="mixtral-8x7b-32768", api_key=api_key)
+llm = ChatGroq(model_name="mixtral-8x7b-32768", api_key=api_key,temperature=0.3)
 
 # creating the tool
 search_tool = DuckDuckGoSearchRun()
