@@ -5,11 +5,11 @@ from langchain.tools import Tool
 from langchain.agents import create_react_agent, AgentExecutor
 from langchain import hub
 
-# Page config with custom CSS for dark green background and white text
+# Page config with custom CSS for dark green background with vignette effect
 st.markdown("""
     <style>
         .stApp {
-            background: radial-gradient(circle at center, #004d1a, #001a0d);
+            background: radial-gradient(circle at center, #0A2615 0%, #061510 100%);
         }
         
         /* Make text white */
