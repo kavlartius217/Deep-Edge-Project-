@@ -40,7 +40,7 @@ def response(user_input):
     return llm_response
 
 # Streamlit UI
-st.title("🔍 AI Research Assistant")
+st.title("🔍Langchain Research Assistant")
 user_input = st.text_input("💭 Ask a question:")
 if user_input:
     with st.spinner('🤔 Searching and thinking...'):
