@@ -1,17 +1,24 @@
 import streamlit as st
 from langchain_groq import ChatGroq
-from langchain_community.tools import DuckDuckGoSearchRun
+from langchain_community.utilities import SerpAPIWrapper
+from langchain.tools import Tool
 from langchain.agents import create_react_agent, AgentExecutor
 from langchain import hub
 
-# Get API key from secrets
-api_key = st.secrets["GROQ_API_KEY"]
+# Get API keys from secrets
+groq_api_key = st.secrets["GROQ_API_KEY"]
+serp_api_key = st.secrets["SERP_API_KEY"]
 
 # importing the llm
-llm = ChatGroq(model_name="mixtral-8x7b-32768", api_key=api_key,temperature=0.3)
+llm = ChatGroq(model_name="mixtral-8x7b-32768", api_key=groq_api_key, temperature=0.3)
 
-# creating the tool
-search_tool = DuckDuckGoSearchRun(maxConcurrency=5)
+# creating the search tool
+search = SerpAPIWrapper(serpapi_api_key=serp_api_key)
+search_tool = Tool.from_function(
+    name="search_tool",
+    func=search.run,
+    description="does a google search and returns current data"
+)
 
 # creating a prompt for the llm
 prompt = hub.pull("hwchase17/react-chat")
@@ -22,7 +29,7 @@ agent = create_react_agent(llm=llm, tools=[search_tool], prompt=prompt)
 # executing the agent
 agent_exec = AgentExecutor(agent=agent, llm=llm, tools=[search_tool], verbose=True, handle_parsing_errors=True)
 
-# Chat history
+# Chat history in session state
 if 'chat_history' not in st.session_state:
     st.session_state.chat_history = []
 
@@ -33,9 +40,9 @@ def response(user_input):
     return llm_response
 
 # Streamlit UI
-st.title("🤖 AI Chat Assistant")
+st.title("🔍 AI Research Assistant")
 user_input = st.text_input("💭 Ask a question:")
 if user_input:
-    with st.spinner('🤔 Processing...'):
+    with st.spinner('🤔 Searching and thinking...'):
         bot_response = response(user_input)
         st.write("🤖:", bot_response['output'])
