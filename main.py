@@ -5,6 +5,32 @@ from langchain.tools import Tool
 from langchain.agents import create_react_agent, AgentExecutor
 from langchain import hub
 
+# Page config with custom CSS for dark green background and white text
+st.markdown("""
+    <style>
+        .stApp {
+            background: radial-gradient(circle at center, #004d1a, #001a0d);
+        }
+        
+        /* Make text white */
+        .stMarkdown, .stText, div[data-testid="stText"] {
+            color: white;
+        }
+        
+        /* Style for text input */
+        .stTextInput input {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Title color */
+        .stTitle {
+            color: white !important;
+        }
+    </style>
+""", unsafe_allow_html=True)
+
 # Get API keys from secrets
 groq_api_key = st.secrets["GROQ_API_KEY"]
 serp_api_key = st.secrets["SERP_API_KEY"]
