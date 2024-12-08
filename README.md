@@ -1,5 +1,5 @@
 PLEASE RELOAD IF THE AGENT HITS ITERATION LIMIT.
-This project completely based on langchain components.
+This is project completely based on langchain components.
 The search tool has the access to google and retrieves the the top results.
 This tool retrieves the top results preprocesses them and makes it available fro the llm.
 The function of the agent is to determine whether to use the tool (google search) or to use the llm's existing data on which it has has been trained.
