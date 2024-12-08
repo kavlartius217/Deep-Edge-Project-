@@ -24,10 +24,11 @@ search_tool = Tool.from_function(
 prompt = hub.pull("hwchase17/react-chat")
 
 # now creating a chatbot using agents
+#react agent has the ability to reason and converse
 agent = create_react_agent(llm=llm, tools=[search_tool], prompt=prompt)
 
 # executing the agent
-agent_exec = AgentExecutor(agent=agent, llm=llm, tools=[search_tool], verbose=True, handle_parsing_errors=True,max_iterations=3)
+agent_exec = AgentExecutor(agent=agent, llm=llm, tools=[search_tool], verbose=True, handle_parsing_errors=True,max_iterations=5)
 
 # Chat history in session state
 if 'chat_history' not in st.session_state:
